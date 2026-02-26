@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false ,
+  BASE_URL : `https://subject-and-http-crud-25-task-default-rtdb.firebaseio.com`
 };
 
 /*
