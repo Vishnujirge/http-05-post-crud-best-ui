@@ -1,0 +1,40 @@
+label.required::after {
+  content: " *";
+  color: red;
+  font-weight: bold;
+}
+
+.btn-wrapper {
+  position: relative;
+  width: 120px;
+  margin: auto;
+}
+
+/* button base */
+.runaway-btn {
+  position: relative;
+  transition: transform 0.25s ease;
+}
+
+/* ONLY when form INVALID */
+.btn-wrapper.invalid:hover .runaway-btn {
+  transform: translateX(100px);
+}
+
+.btn-wrapper.invalid:hover .runaway-btn {
+  transform: translateX(-100px);
+}
+
+.btn-wrapper {
+  position: relative;
+  width: 160px;
+  margin: auto;
+  height: 80px;
+}
+
+.runaway-btn {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: transform 0.25s ease;
+}/*# sourceMappingURL=student-form.component.css.map */

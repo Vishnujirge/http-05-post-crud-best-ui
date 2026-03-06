@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { StudentsService } from '../../service/students.service';
+import { Istd } from '../../models/iStudents';
 
 @Component({
   selector: 'app-student-form',
@@ -18,6 +19,8 @@ export class StudentFormComponent implements OnInit {
   ngOnInit(): void {
     this.createStdForm();
   }
+
+  constructor(private _stdSerivice: StudentsService) {}
 
   createStdForm() {
     this.stdForm = new FormGroup({
@@ -43,7 +46,21 @@ export class StudentFormComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.stdForm.invalid) {
+    if (this.stdForm.valid) {
+      // API Call
+      let stdObj: Istd = this.stdForm.value;
+
+      this._stdSerivice.createStd(stdObj).subscribe({
+        next: (data) => {
+          console.log(data);
+          this._stdSerivice.setNewStd(stdObj)
+          this.stdForm.reset()
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
+
       this.stdForm.markAllAsTouched();
       return;
     }
@@ -51,7 +68,7 @@ export class StudentFormComponent implements OnInit {
     console.log(this.stdForm.value);
   }
 
-  ///////////////////////////
+  ///////////////////////////  for btn run away
   btnStyle = {
     transform: 'translateX(-50%)',
   };
@@ -82,7 +99,7 @@ export class StudentFormComponent implements OnInit {
         transform: 'translateX(-120px)',
       };
     }
-  } 
+  }
   // ==================TUC code============
 
   //   stdForm!: FormGroup;

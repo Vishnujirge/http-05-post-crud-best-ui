@@ -1,0 +1,12 @@
+.student-card {
+  border: 1px solid #ddd;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+}
+
+.actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}/*# sourceMappingURL=student-list.component.css.map */

@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-body">
-    <form [formGroup]="stdForm">
+    <form [formGroup]="stdForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="fname" class="required">First Name </label>
         <input type="text" formControlName="fname" class="form-control mb-3" />
@@ -23,7 +23,7 @@
       </div>
 
       <div class="form-group">
-        <label for="contact" class="required">Contact </label>
+        <label for="contact" class="required"> Contact </label>
         <input
           type="text"
           formControlName="contact"
@@ -41,22 +41,21 @@
             <mat-icon class="mat-18">add</mat-icon>
           </button> -->
 
-
           <div
-  class="btn-wrapper"
-  [class.invalid]="stdForm.invalid"
-  (mousemove)="onMouseMove($event)"
->
-  <button
-    mat-mini-fab
-    color="accent"
-    type="submit"
-    class="runaway-btn"
-    [ngStyle]="btnStyle"
-  >
-    <mat-icon>add</mat-icon>
-  </button>
-</div>
+            class="btn-wrapper"
+            [class.invalid]="stdForm.invalid"
+            (mousemove)="onMouseMove($event)"
+          >
+            <button
+              mat-mini-fab
+              color="accent"
+              type="submit"
+              class="runaway-btn"
+              [ngStyle]="btnStyle"
+            >
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
           <!-- <div class="btn-wrapper" [class.invalid]="stdForm.invalid">
             <button
               mat-mini-fab

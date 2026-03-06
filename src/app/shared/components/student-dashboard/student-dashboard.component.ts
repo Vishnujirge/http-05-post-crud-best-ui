@@ -10,10 +10,15 @@ import { Istd } from '../../models/iStudents';
 export class StudentDashboardComponent implements OnInit {
   stdArr: Array<Istd> = [];
 
-  constructor(private _stdStudent: StudentsService) {} 
+  constructor(private _stdStudent: StudentsService) {}
 
   ngOnInit(): void {
     this.fetchData();
+    this._stdStudent.newStdSubObs$.subscribe((data) => {
+      console.log(data);
+      this.stdArr.unshift(data);
+      //use anything like push unshift
+    });
   }
 
   fetchData() {
@@ -27,7 +32,4 @@ export class StudentDashboardComponent implements OnInit {
       },
     });
   }
-
-  
-
 }
