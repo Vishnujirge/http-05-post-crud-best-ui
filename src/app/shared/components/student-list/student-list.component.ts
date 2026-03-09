@@ -10,23 +10,17 @@ import { GetConfirmComponent } from '../get-confirm/get-confirm.component';
 })
 export class StudentListComponent implements OnInit {
   @Input() stdData!: Istd[];
-  constructor(
-    private _matDialog : MatDialog
-  ) {}
+  constructor(private _matDialog: MatDialog) {}
 
   ngOnInit(): void {}
 
   onRemove(id: string) {
     console.log(id);
-    let matConfig = new MatDialogConfig
+    let matConfig = new MatDialogConfig();
     matConfig.width = '400px';
-    matConfig.data = 'Are You sure , you want to remove this data'
-    
-     // matRef = 
-      this._matDialog.open(GetConfirmComponent,matConfig)
-    .afterClosed()
-    
+    matConfig.data = `Are You sure , you want to remove this data ${id} `;
 
-
+    // matRef =
+    this._matDialog.open(GetConfirmComponent, matConfig).afterClosed();
   }
 }

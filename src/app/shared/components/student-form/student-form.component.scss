@@ -39,3 +39,15 @@ label.required::after {
   transform: translateX(-50%);
   transition: transform 0.25s ease;
 }
+
+// ====================
+.form-card {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e5e5;
+}
+
+// input {
+//   border: 1px solid rgb(95, 255, 2);
+// }
