@@ -11,10 +11,17 @@ export class StudentsService {
   BASE_URL: string = environment.BASE_URL;
   STUDENT_URL: string = `${this.BASE_URL}/student.json`;
 
+  constructor(private _http: HttpClient) {}
+
   private newStdSub$: Subject<Istd> = new Subject<Istd>();
   newStdSubObs$: Observable<Istd> = this.newStdSub$.asObservable();
 
-  constructor(private _http: HttpClient) {}
+  private removeStdSub$: Subject<string> = new Subject<string>();
+  removeStdObs$: Observable<String> = this.removeStdSub$.asObservable();
+
+  setRemoveStdId(id: string) {
+    this.removeStdSub$.next(id); // as observer
+  }
 
   // fetchStudents(): Observable<any[]> {
   //   return this._http.get<any>(this.STUDENT_URL).pipe(
@@ -51,6 +58,11 @@ export class StudentsService {
 
   setNewStd(newStd: Istd) {
     this.newStdSub$.next(newStd);
+  }
+
+  removeStd(id: string): Observable<any> {
+    let REMOVE_URL: string = `${this.BASE_URL}/student/${id}.json`;
+    return this._http.delete<any>(REMOVE_URL);
   }
 }
 

@@ -10,6 +10,7 @@ import { GetConfirmComponent } from './shared/components/get-confirm/get-confirm
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './material/material.module';
+import { StdListTwoComponent } from './shared/components/std-list-two/std-list-two.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { MaterialModule } from './material/material.module';
     StudentFormComponent,
     StudentListComponent,
     GetConfirmComponent,
+    StdListTwoComponent,
   ],
   imports: [
     BrowserModule,

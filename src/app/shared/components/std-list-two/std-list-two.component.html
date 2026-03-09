@@ -1,0 +1,43 @@
+<!-- <h1 class="text-center"></h1> -->
+<div class="table-responsive">
+  <table class="table table-bordered table-hover align-middle text-center">
+    <thead class="table-success">
+      <tr>
+        <th>Sr No.</th>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Contact</th>
+        <th>Actions 2</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <!-- DATA ROWS -->
+      <ng-container *ngIf="stdData.length > 0; else noData">
+        <tr *ngFor="let std of stdData; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ std.fname }} {{ std.lname }}</td>
+          <td>{{ std.email }}</td>
+          <td>{{ std.contact }}</td>
+          <td>
+            <button mat-mini-fab class="me-2" color="accent">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button (click)="onRemove(std.stdId)" mat-mini-fab color="warn">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </ng-container>
+
+      <!-- NO DATA TEMPLATE -->
+      <ng-template #noData>
+        <tr>
+          <td colspan="5" class="text-centert text-center text-muted">
+            No records found
+          </td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+</div>

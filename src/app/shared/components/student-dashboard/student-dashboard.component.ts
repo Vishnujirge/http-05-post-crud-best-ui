@@ -14,10 +14,22 @@ export class StudentDashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchData();
+    this.pushData();
+    this.onDelete();
+  }
+
+  onDelete() {
+    this._stdStudent.removeStdObs$.subscribe((id) => {
+      let getIndex = this.stdArr.findIndex((s) => s.stdId === id);
+      this.stdArr.splice(getIndex, 1);
+    });
+  }
+
+  pushData() {
     this._stdStudent.newStdSubObs$.subscribe((data) => {
       console.log(data);
-      this.stdArr.unshift(data);
-      //use anything like push unshift
+      this.stdArr.push(data);
+      //use anything like push unshift, but orederd must maintain
     });
   }
 

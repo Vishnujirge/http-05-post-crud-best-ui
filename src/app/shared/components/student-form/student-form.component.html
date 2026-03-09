@@ -3,12 +3,37 @@
     <form [formGroup]="stdForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="fname" class="required">First Name </label>
-        <input type="text" formControlName="fname" class="form-control mb-3" />
+        <input type="text" formControlName="fname" class="form-control mb-1" />
+
+        <div
+          class="text-danger small"
+          *ngIf="stdForm.get('fname')?.touched && stdForm.get('fname')?.invalid"
+        >
+          <span *ngIf="stdForm.get('fname')?.errors?.['required']">
+            First name is required
+          </span>
+
+          <span *ngIf="stdForm.get('fname')?.errors?.['pattern']">
+            Only letters allowed (2-20 characters)
+          </span>
+        </div>
       </div>
 
       <div class="form-group">
         <label for="lname" class="required">Last Name </label>
         <input type="text" formControlName="lname" class="form-control mb-3" />
+        <div
+          class="text-danger small"
+          *ngIf="stdForm.get('lname')?.touched && stdForm.get('lname')?.invalid"
+        >
+          <span *ngIf="stdForm.get('lname')?.errors?.['required']">
+            Last name is required
+          </span>
+
+          <span *ngIf="stdForm.get('lname')?.errors?.['pattern']">
+            Only letters allowed
+          </span>
+        </div>
       </div>
 
       <div class="form-group">
@@ -20,6 +45,19 @@
           name="email"
           id="email"
         />
+
+        <div
+          class="text-danger small"
+          *ngIf="stdForm.get('email')?.touched && stdForm.get('email')?.invalid"
+        >
+          <span *ngIf="stdForm.get('email')?.errors?.['required']">
+            Email is required
+          </span>
+
+          <span *ngIf="stdForm.get('email')?.errors?.['email']">
+            Invalid email format
+          </span>
+        </div>
       </div>
 
       <div class="form-group">
@@ -30,8 +68,24 @@
           class="form-control mb-3"
         />
 
-        <div class="text-center">
-          <!-- <button
+        <div
+          class="text-danger small"
+          *ngIf="
+            stdForm.get('contact')?.touched && stdForm.get('contact')?.invalid
+          "
+        >
+          <span *ngIf="stdForm.get('contact')?.errors?.['required']">
+            Contact is required
+          </span>
+
+          <span *ngIf="stdForm.get('contact')?.errors?.['pattern']">
+            Enter valid Indian mobile number
+          </span>
+        </div>
+      </div>
+
+      <div class="text-center mt-3">
+        <!-- <button
             mat-mini-fab
             color="accent"
             class="runaway-btn"
@@ -41,22 +95,22 @@
             <mat-icon class="mat-18">add</mat-icon>
           </button> -->
 
-          <div
-            class="btn-wrapper"
-            [class.invalid]="stdForm.invalid"
-            (mousemove)="onMouseMove($event)"
+        <div
+          class="btn-wrapper"
+          [class.invalid]="stdForm.invalid"
+          (mousemove)="onMouseMove($event)"
+        >
+          <button
+            mat-mini-fab
+            color="accent"
+            type="submit"
+            class="runaway-btn"
+            [ngStyle]="btnStyle"
           >
-            <button
-              mat-mini-fab
-              color="accent"
-              type="submit"
-              class="runaway-btn"
-              [ngStyle]="btnStyle"
-            >
-              <mat-icon>add</mat-icon>
-            </button>
-          </div>
-          <!-- <div class="btn-wrapper" [class.invalid]="stdForm.invalid">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+        <!-- <div class="btn-wrapper" [class.invalid]="stdForm.invalid">
             <button
               mat-mini-fab
               color="accent"
@@ -66,10 +120,9 @@
               <mat-icon>add</mat-icon>
             </button>
           </div> -->
-          <!-- <button mat-mini-fab color="primary">
+        <!-- <button mat-mini-fab color="primary">
             <mat-icon>update</mat-icon>
           </button> -->
-        </div>
       </div>
     </form>
   </div>

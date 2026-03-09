@@ -1,12 +1,14 @@
 <div class="container">
   <div class="row mt-4">
-    <div class="col-md-4">
+    <div class="col-md-5">
       <app-student-form></app-student-form>
     </div>
-    <div class="col-md-8">
-      <app-student-list
-      [stdData]="stdArr"
-      ></app-student-list>
+    <div class="col-md-7">
+      <app-student-list [stdData]="stdArr"></app-student-list>
     </div>
   </div>
+
+  <!-- <div class="col-md-6">
+      <app-std-list-two [stdData]="stdArr"></app-std-list-two>
+    </div> -->
 </div>
