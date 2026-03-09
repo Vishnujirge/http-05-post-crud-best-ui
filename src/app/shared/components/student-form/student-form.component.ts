@@ -53,8 +53,9 @@ export class StudentFormComponent implements OnInit {
       this._stdSerivice.createStd(stdObj).subscribe({
         next: (data) => {
           console.log(data);
-          this._stdSerivice.setNewStd(stdObj)
-          this.stdForm.reset()
+          //data = {name :'' }
+          this._stdSerivice.setNewStd({ ...stdObj, stdId: data.name });
+          this.stdForm.reset();
         },
         error: (err) => {
           console.log(err);

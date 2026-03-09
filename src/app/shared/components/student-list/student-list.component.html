@@ -22,7 +22,7 @@
             <button mat-mini-fab class="me-2" color="accent">
               <mat-icon>edit</mat-icon>
             </button>
-            <button mat-mini-fab color="warn">
+            <button (click)="onRemove(std.stdId)" mat-mini-fab color="warn">
               <mat-icon>delete</mat-icon>
             </button>
           </td>
