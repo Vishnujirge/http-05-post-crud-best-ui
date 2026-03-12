@@ -4,6 +4,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { GetConfirmComponent } from '../get-confirm/get-confirm.component';
 import { StudentsService } from '../../service/students.service';
 import { observable } from 'rxjs';
+import { SnackbarService } from '../../service/snackbar.service';
 
 @Component({
   selector: 'app-student-list',
@@ -15,14 +16,14 @@ export class StudentListComponent implements OnInit {
   constructor(
     private _matDialog: MatDialog,
     private _stdService: StudentsService,
+    private _snackBar: SnackbarService,
   ) {}
 
   ngOnInit(): void {}
 
-
-    onEdit(std: Istd){
-      this._stdService.setEditStd(std)
-    }
+  onEdit(std: Istd) {
+    this._stdService.setEditStd(std);
+  }
 
   onRemove(id: string) {
     console.log(id);
@@ -46,7 +47,8 @@ export class StudentListComponent implements OnInit {
           .subscribe({
             next: (data) => {
               // console.log(data);
-              this._stdService.setRemoveStdId(id)
+              this._stdService.setRemoveStdId(id);
+              this._snackBar.showMessage('Data Removed Successdully');
             },
             error: (err) => {
               console.log(err);
