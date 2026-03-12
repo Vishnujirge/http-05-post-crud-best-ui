@@ -15,9 +15,18 @@ import { Istd } from '../../models/iStudents';
 })
 export class StudentFormComponent implements OnInit {
   stdForm!: FormGroup;
-
+  isInEditMode: boolean = false;
+  eidtStdId!: string;
   ngOnInit(): void {
     this.createStdForm();
+
+    this._stdSerivice.editStdObs$.subscribe((stdData) => {
+      if (stdData) {
+        this.isInEditMode = true;
+        this.eidtStdId = stdData.stdId;
+        this.stdForm.patchValue(stdData);
+      }
+    });
   }
 
   constructor(private _stdSerivice: StudentsService) {}

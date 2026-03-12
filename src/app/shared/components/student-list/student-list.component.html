@@ -19,7 +19,7 @@
           <td>{{ std.email }}</td>
           <td>{{ std.contact }}</td>
           <td>
-            <button mat-mini-fab class="me-2" color="accent">
+            <button (click)="onEdit(std)"  mat-mini-fab class="me-2" color="accent">
               <mat-icon>edit</mat-icon>
             </button>
             <button (click)="onRemove(std.stdId)" mat-mini-fab color="warn">

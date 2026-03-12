@@ -19,6 +19,11 @@ export class StudentListComponent implements OnInit {
 
   ngOnInit(): void {}
 
+
+    onEdit(std: Istd){
+      this._stdService.setEditStd(std)
+    }
+
   onRemove(id: string) {
     console.log(id);
     let matConfig = new MatDialogConfig();

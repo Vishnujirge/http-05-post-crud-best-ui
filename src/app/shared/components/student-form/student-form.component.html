@@ -106,8 +106,20 @@
             type="submit"
             class="runaway-btn"
             [ngStyle]="btnStyle"
+            *ngIf="!isInEditMode"
           >
             <mat-icon>add</mat-icon>
+          </button>
+
+          <button
+            mat-mini-fab
+            color="primary"
+            type="button"
+            class="runaway-btn"
+            [ngStyle]="btnStyle"
+            *ngIf="isInEditMode"
+          >
+            <mat-icon>update</mat-icon>
           </button>
         </div>
         <!-- <div class="btn-wrapper" [class.invalid]="stdForm.invalid">
