@@ -20,12 +20,18 @@ export class StudentsService {
   removeStdObs$: Observable<String> = this.removeStdSub$.asObservable();
 
   private editStdSub$: Subject<Istd> = new Subject<Istd>();
-  editStdObs$ : Observable<Istd> = this.editStdSub$.asObservable();
+  editStdObs$: Observable<Istd> = this.editStdSub$.asObservable();
 
- setEditStd(std : Istd){
-  this.editStdSub$.next(std)
- }
+  private updateStdSub$: Subject<Istd> = new Subject<Istd>();
+  updateStdObs$: Observable<Istd> = this.updateStdSub$.asObservable();
 
+  updateStd(std: Istd) {
+    this.updateStdSub$.next(std);
+  }
+
+  setEditStd(std: Istd) {
+    this.editStdSub$.next(std);
+  }
 
   setRemoveStdId(id: string) {
     this.removeStdSub$.next(id); // as observer

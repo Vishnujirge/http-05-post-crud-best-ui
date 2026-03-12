@@ -1,5 +1,7 @@
 <div class="card form-card">
   <div class="card-body">
+    <h2 class="text-center">{{ isInEditMode ? "Update mode" : "Add mode" }}</h2>
+
     <form [formGroup]="stdForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="fname" class="required">First Name </label>

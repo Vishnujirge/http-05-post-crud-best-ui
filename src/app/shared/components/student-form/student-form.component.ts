@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { StudentsService } from '../../service/students.service';
 import { Istd } from '../../models/iStudents';
+import { SnackbarService } from '../../service/snackbar.service';
 
 @Component({
   selector: 'app-student-form',
@@ -19,7 +20,7 @@ export class StudentFormComponent implements OnInit {
   eidtStdId!: string;
   ngOnInit(): void {
     this.createStdForm();
-
+    this._snackbar.showMessage('Data Fetch Successfully!');
     this._stdSerivice.editStdObs$.subscribe((stdData) => {
       if (stdData) {
         this.isInEditMode = true;
@@ -29,7 +30,10 @@ export class StudentFormComponent implements OnInit {
     });
   }
 
-  constructor(private _stdSerivice: StudentsService) {}
+  constructor(
+    private _stdSerivice: StudentsService,
+    private _snackbar: SnackbarService,
+  ) {}
 
   createStdForm() {
     this.stdForm = new FormGroup({
@@ -110,6 +114,7 @@ export class StudentFormComponent implements OnInit {
       };
     }
   }
+
   // ==================TUC code============
 
   //   stdForm!: FormGroup;
