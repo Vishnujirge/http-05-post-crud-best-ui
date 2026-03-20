@@ -20,20 +20,34 @@ export class StudentFormComponent implements OnInit {
   eidtStdId!: string;
   ngOnInit(): void {
     this.createStdForm();
-    this._snackbar.showMessage('Data Fetch Successfully!');
-    this._stdSerivice.editStdObs$.subscribe((stdData) => {
-      if (stdData) {
-        this.isInEditMode = true;
-        this.eidtStdId = stdData.stdId;
-        this.stdForm.patchValue(stdData);
-      }
-    });
+    this.editDataPatch();
   }
 
   constructor(
     private _stdSerivice: StudentsService,
     private _snackbar: SnackbarService,
   ) {}
+
+  onUpdate() {
+    if (this.stdForm.valid) {
+      let UPDATE_OBJ: Istd = { ...this.stdForm.value, stdId: this.eidtStdId };
+      //here we need that api call - to send that data to dashbord - so we need api call function - so api call is in that service 
+      this._stdSerivice.updateStd
+
+    }
+  }
+
+  editDataPatch() {
+    this._snackbar.showMessage('Data Fetch Successfully!');
+    this._stdSerivice.editStdObs$.subscribe((stdData) => {
+      if (stdData) {
+        this.isInEditMode = true;
+        this.eidtStdId = stdData.stdId;
+        this.stdForm.patchValue(stdData);
+        console.log(this.eidtStdId);
+      }
+    });
+  }
 
   createStdForm() {
     this.stdForm = new FormGroup({
@@ -69,6 +83,7 @@ export class StudentFormComponent implements OnInit {
           //data = {name :'' }
           this._stdSerivice.setNewStd({ ...stdObj, stdId: data.name });
           this.stdForm.reset();
+          this._snackbar.showMessage('Data Saved Successfully! ');
         },
         error: (err) => {
           console.log(err);

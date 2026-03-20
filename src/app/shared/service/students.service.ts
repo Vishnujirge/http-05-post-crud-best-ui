@@ -25,12 +25,24 @@ export class StudentsService {
   private updateStdSub$: Subject<Istd> = new Subject<Istd>();
   updateStdObs$: Observable<Istd> = this.updateStdSub$.asObservable();
 
-  updateStd(std: Istd) {
-    this.updateStdSub$.next(std);
+
+  //BE's -> date updated obj return as response ... if not get any response then you have /[can] to show on ui
+
+    // 2.when yo call this function it will return . observalebe type of Istd data .
+    // so when you subscribe it you will get Istd type of dat
+    // we are sending a data to BE .. we are accepting anything fom BE. No need of data form . we are sending the data
+    //when you are wrting a function type .. so you have to write what kind of data that patch method handel 
+  updateStd(std: Istd): Observable<Istd> {
+    // this.updateStdSub$.next(std); 
+    // as observer
+    let UPDATE_URL = `${this.BASE_URL}/student/${std.stdId}`;
+
+    //update url + body -payload sned to BE
+   return this._http.patch<Istd>(UPDATE_URL,std)
   }
 
   setEditStd(std: Istd) {
-    this.editStdSub$.next(std);
+    this.editStdSub$.next(std); // as observer
   }
 
   setRemoveStdId(id: string) {
@@ -51,13 +63,13 @@ export class StudentsService {
   //   );
   // }
 
+
+
+  // here is one problem with firebase .. fetching the data . you dont get an Array ... get method give you an nested object so 
+  // we are applying pipeble obrator for convrting it into the array
   fetchStudents(): Observable<any[]> {
     return this._http.get<any>(this.STUDENT_URL).pipe(
       map((obj) =>
-        // Object.keys(obj || {})
-        //   .filter((key) => obj[key])
-        //   .map((key) => ({ ...obj[key], stdId: key })),
-        // ),
 
         Object.keys(obj || {})
           .filter((key) => obj[key])

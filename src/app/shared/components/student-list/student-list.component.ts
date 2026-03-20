@@ -23,6 +23,7 @@ export class StudentListComponent implements OnInit {
 
   onEdit(std: Istd) {
     this._stdService.setEditStd(std);
+    this._snackBar.showMessage('Data Patch Successdully');
   }
 
   onRemove(id: string) {
@@ -40,20 +41,23 @@ export class StudentListComponent implements OnInit {
       .afterClosed()
       .subscribe((res) => {
         console.log(res);
-        // api call to remove std
-        this._stdService
-          .removeStd(id)
-          // Higher order observable means multipel subscibe
-          .subscribe({
-            next: (data) => {
-              // console.log(data);
-              this._stdService.setRemoveStdId(id);
-              this._snackBar.showMessage('Data Removed Successdully');
-            },
-            error: (err) => {
-              console.log(err);
-            },
-          });
+
+        if (res) {
+          // api call to remove std
+          this._stdService
+            .removeStd(id)
+            // Higher order observable means multipel subscibe
+            .subscribe({
+              next: (data) => {
+                // console.log(data);
+                this._stdService.setRemoveStdId(id);
+                this._snackBar.showMessage('Data Removed Successdully');
+              },
+              error: (err) => {
+                console.log(err);
+              },
+            });
+        }
       });
   }
 }

@@ -120,6 +120,7 @@
             class="runaway-btn"
             [ngStyle]="btnStyle"
             *ngIf="isInEditMode"
+            (click)=" onUpdate()"
           >
             <mat-icon>update</mat-icon>
           </button>
